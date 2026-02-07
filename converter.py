@@ -1,29 +1,20 @@
-foot = 0.3048
-meter = 3.28084
+def foot_to_meter(x):
+    return x * 0.3048
+def meter_to_foot(x):
+    return x * 3.28084
+def fahrenheit_to_celsius(x):
+    return (x - 32) / 1.8
+def celsius_to_fharenheit(x):
+    return x * 1.8 + 32
 
-"""
-T(F) = T(C) * 1.8 + 32
-T(C) = (T(F) - 32) / 1.8
-"""
+unit_in = input("Enter unit: ")
+x = float(input("Enter value: "))
 
-measure = ["foot", "meter", "fahrenheit", "celsius"]
+measure = {
+    "foot": [foot_to_meter, "m"],
+    "meter": [meter_to_foot, "ft"],
+    "fahrenheit": [fahrenheit_to_celsius, "°C"],
+    "celsius": [celsius_to_fharenheit, "°F"]
+}
 
-while True:
-    unit = input("Enter unit: ")
-    if unit in measure:
-        value = input("Enter value: ")
-        if unit == "foot":
-            print(float(value) * foot, "m")
-            break
-        elif unit == "meter":
-            (print(float(value) * meter, "ft"))
-            break
-        elif unit == "fahrenheit":
-            print((float(value) - 32) / 1.8, "C")
-            break
-        elif unit == "celsius":
-            print(float(value) * 1.8 + 32, "F")
-            break
-    else:
-        print("Invalid unit")
-        continue
+print(f"{measure[unit_in][0](x):.2f} {measure[unit_in][1]}")
